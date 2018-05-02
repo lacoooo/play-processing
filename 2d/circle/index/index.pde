@@ -3,10 +3,9 @@ ArrayList<Circle> circles;
 PImage img = createImage(66, 66, RGB);
 
 void setup() {
-    size(1000, 1000);
+    size(800, 800, P3D);
     circles = new ArrayList<Circle>();
     stroke(0);
-    strokeWeight(1);
     img = loadImage("1.jpg");
     //image(img, 0, 0, 1000, 1000);
     img.loadPixels();
@@ -15,19 +14,21 @@ void setup() {
 void draw() {
   
     background(255);
-    int x = floor(random(width));
-    int y = floor(random(height));
-    boolean ok = true;
-    for ( Circle c : circles ) {
-        if ( dist(x, y, c.x, c. y) <= c.r ) {
-            ok = false;
+    for (int i = 0; i < 80; i ++) {
+      int x = floor(random(width));
+      int y = floor(random(height));
+      boolean ok = true;
+      for ( Circle c : circles ) {
+          if ( dist(x, y, c.x, c. y) <= c.r ) {
+              ok = false;
+          }
+      }
+      int index = x + y * 800;
+          if ( ok && -img.pixels[index] > random(16700000) + 10000000 ) {
+            circles.add( new Circle(x, y) );
         }
     }
-    int index = x + y * 1000;
-    if ( ok && -img.pixels[index] > random(16700000) + 10000000 ) {
-        circles.add( new Circle(x, y) );
-    }
-    
+
     //if (circles.size() > 50) return;
 
     for( Circle c : circles ) {
@@ -37,7 +38,7 @@ void draw() {
             if ( c == other ) continue;
             float dist = dist( c.x, c.y, other.x, other.y );
             float real = c.r + other.r;
-            if ( dist < real ) {
+            if ( dist < real && real > 0 ) {
                 overLap = true;
             }
         }
@@ -45,7 +46,6 @@ void draw() {
             c.grow();
         }
     }
-    print(1);
 }
 
 void keyPressed() {
