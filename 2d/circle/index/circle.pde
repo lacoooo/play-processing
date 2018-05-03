@@ -11,18 +11,16 @@ class Circle {
     }
 
     void show() {
-        lights();
         pushMatrix();
-        //fill(0);
         translate(x, y, 0);
         rotateY(x / 100);
-        rotateX(y / 300);
+        rotateX(y / 100);
         box(r, r, r * 2);
         popMatrix();
     }
 
     void grow() {
-        r += 0.05;
+        r += 0.12;
     }
 
 }

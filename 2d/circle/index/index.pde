@@ -14,6 +14,7 @@ void setup() {
 void draw() {
   
     background(255);
+    lights();
     for (int i = 0; i < 80; i ++) {
       int x = floor(random(width));
       int y = floor(random(height));
@@ -24,7 +25,7 @@ void draw() {
           }
       }
       int index = x + y * 800;
-          if ( ok && -img.pixels[index] > random(16700000) + 10000000 ) {
+          if ( ok && -img.pixels[index] > random(16700000) + 9000000 ) {
             circles.add( new Circle(x, y) );
         }
     }
