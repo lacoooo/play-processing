@@ -6,6 +6,7 @@ void setup() {
     size(800, 800, P3D);
     circles = new ArrayList<Circle>();
     stroke(0);
+    fill(200);
     img = loadImage("1.jpg");
     //image(img, 0, 0, 1000, 1000);
     img.loadPixels();
