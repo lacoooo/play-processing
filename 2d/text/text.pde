@@ -5,7 +5,7 @@ float round = 50;
 float scale = 20;
 
 void setup() {
-  size(800, 800, P3D);
+  size(1000, 1000, P3D);
   noStroke();
   //fill(0, 255);
   smooth(8);
@@ -21,7 +21,7 @@ void draw() {
   clear();
   background(255);
   float wild = 7.2;
-  for (float j = 10; j < 30; j++) {
+  for (float j = 10; j < 60; j++) {
     for (float i = round; i < round + 50; i++) {
       pushMatrix();
       float x = j * j * sin(radians(i) * wild);
@@ -29,17 +29,18 @@ void draw() {
       float n = noise((x + frameCount * 10) / 2000, z / 2000, j / 20);
       x *= n;
       z *= n;
-      translate(width/2 + x, j * 30, z);
+      translate(width/2 + x, j * 30 - 300, z);
       rotateY(radians(i) * wild);
-      textSize(30);
+      textSize(j * j / 20);
       //fill(0, z >= 0 ? 255 : 100);
-      text('a', 0, 0);
+      text(i, 0, 0);
       popMatrix();
     }
   }
 
   round += 0.04;
-  camera(mouseX, mouseY, (height/2) / tan(PI/6), width/2, height/2, 0, 0, 1, 0);
+  camera(mouseX * 3, mouseY * 3, (height/10) / tan(PI/6), width/2, height/2, 0, 0, 1, 0);
+  //ortho(-mouseX, mouseX, -mouseY, mouseY);
 }
 
 void keyPressed() {
